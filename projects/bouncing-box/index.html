@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+	<style>
+		#bg {
+  		position: fixed; 
+  		top: -50%; 
+  		left: -50%; 
+ 		width: 200%; 
+  		height: 200%;
+		}
+		#bg img {
+  		position: absolute; 
+  		top: 0; 
+  		left: 0; 
+  		right: 0; 
+  		bottom: 0; 
+  		margin: auto; 
+  		min-width: 25%;
+  		min-height: 25%;
+		}
+		/* TODO 1 */
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: crimson;
+			font-size: 300%;
+			text-align: center;
+			display: box;
+			position: absolute;
+			top: 115px;
+			left: 500px;
+			border: rgb(57, 255, 20);
+			border-width: 15px;
+		}
+	</style>
+
+</head>
+<body class="board">
+	<div id="bg">
+  		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaqEREtB4-1ibYkbsxMaRGeWbOxC6bYa8JWnGh-Sxi34m7nhmrwDUXBQ:https://pl.scdn.co/images/pl/default/1a011d3fb784c9d5292acd5cf1923f2a951f9948" alt="">
+	</div>
+	<!-- HTML for the box -->
+	<div class="box">0</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict';
+			/* global jQuery */
+
+			// jQuery stuff setup for you
+			var box = jQuery('.box');
+			var boardWidth = jQuery('.board').width();
+			var boardHeight = jQuery(window).height(); 
+			var trueWidth = boardWidth - 150;
+			// TODO 2 - Variable declarations 
+			var randNum; // reference for random starting position
+			var position;       // reference for the x-coordinate of our box
+			var yPosition		// reference for the y-coordinate of our box
+			var points;         // reference for the points displayed on the box
+			var speed;          // reference for how fast the box moves
+			var direction;       // reference for the direction the box is moving: 1 means right, -1 means left
+			var yDirection;		 // reference for the direction the box is moving: 1 is up, 1 means down
+			box.css('left', position);      // moves the box to the x-coordinate of <position>
+			box.text(points);               // changes the text of the box to display the value of <points>
+			var randyNumb1 = Math.random() * 255; // a random number for color changing
+			var randyNumb2 = Math.random() * 255; // a random number for color changing
+			var randyNumb3 = Math.random() * 255; // a random number for color changing
+			var colorUpdate = 0
+			position = 0;
+			points = 0;
+			speed = 0.1;
+			direction = 1;
+			var speedBoi = 0.5;
+			var running90s = 0;
+			var direct = true;
+			function update() {
+				// TODO 3 / 6 / 7 / 8
+				randNum = Math.random() * boardWidth;
+				position += speed * direction;    // increment position by speed on every update
+				console.log("new position: " + position);
+				
+				if(position > trueWidth) {		// Tests to see if the right wall is collided with, and bounces the box back
+    				console.log("Right Wall Hit");
+    				direction = -1;
+    				console.log(direction);
+				}
+				if(position > boardHeight) {		// Tests to see if the upper wall is collided with, and bounces the box back
+					console.log("Upper Wall Hit");
+					yDirection = -1;
+					console.log(yDirection);
+				}
+				if (position < boardHeight) {		// Tests to see if the bottom wall is collided with, and bounces the box back
+					console.log("Lower Wall Hit");
+					yDirection = 1;
+					console.log(yDirection);
+				}
+				
+				if(position < 0) {		// Tests to see if the left wall is collided with, and bounces the box back
+    				console.log("Left wall hit");
+    				direction = 1;
+    				console.log(direction);
+				}
+				box.css('left', position);
+			}
+			function handleBoxClick() {
+				// TODO 4 / 5
+				var randyNumb1 = Math.random() * 255;
+				var randyNumb2 = Math.random() * 255;
+				var randyNumb3 = Math.random() * 255;
+				if (colorUpdate >= 2) {
+					box.css("background-color", `rgb(${randyNumb3}, ${randyNumb2}, ${randyNumb1})`);
+					colorUpdate = 0;
+				} else if (colorUpdate < 3) {
+					colorUpdate += 1;
+				}
+				if (running90s >= 2) {
+					speedBoi += 0.25;
+					running90s = 0;
+				} else {
+					running90s += 1;
+				}
+				points += 1;           // increase the point total
+				box.text(points);      // update the new points total displayed by the box
+				position = randNum;         // reset the position of the box to a random spot
+				speed += speedBoi;    // increase the speed of the box on every click
+			}
+
+
+			//this executes the update function code every 50 milliseconds
+			setInterval(update, 20);
+			// this executes the handleBoxClick function code every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+</body>
+</html>
