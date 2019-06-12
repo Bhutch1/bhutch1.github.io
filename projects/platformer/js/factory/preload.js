@@ -13,7 +13,6 @@
         game.load.image('grace', './asset/collectable/grace-head.png');
         game.load.image('kennedi', './asset/collectable/kennedi-head.png');
         game.load.image('max', './asset/collectable/max-head.png');
-        game.load.image('shrek1', './asset/collectable/shrek-card.png');
         game.load.atlas('halle', './asset/halle/phaser-json-array/halle.png', './asset/halle/phaser-json-array/halle.json');
     };
 })(window);

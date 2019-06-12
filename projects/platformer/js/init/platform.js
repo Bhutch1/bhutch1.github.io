@@ -32,14 +32,13 @@
          * asset, giving it a scaleX and scaleY of 2 will stretch it across the 
          * bottom of the game.
          */
-        platform.create(0, game.world.height - 32, 3, 2);
+        platform.create(0, game.world.height - 32, 3, 2); //Level Floor
 
         // example:
-        platform.create(400, 480);
-        platform.create(500, 200);
-        platform.create(200, 600);
-        platform.create(50, 256);
-        
+        platform.create(0, 550, 1.2, 0.1); // Level 1 Left Tile
+        platform.create(575, 550, 0.9, 0.1); // Level 1 Right Tile
+        platform.create(50, 450, 1.5, 0.1); // Level 2 Left Tile
+        platform.create(750, 450, 0.4, 0.1); // Level 2 Right Tile
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
     };
