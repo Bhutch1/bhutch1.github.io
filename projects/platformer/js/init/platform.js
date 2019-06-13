@@ -33,12 +33,20 @@
          * bottom of the game.
          */
         platform.create(0, game.world.height - 32, 3, 2); //Level Floor
+        platform.create(100, 0, 2.2, 0.25); //Roof
+        platform.create(0, 0, 0.025, 50); //Left Border
+        platform.create(890, 0, 0.025, 50); //Right Border
+        
 
         // example:
         platform.create(0, 550, 1.2, 0.1); // Level 1 Left Tile
         platform.create(575, 550, 0.9, 0.1); // Level 1 Right Tile
-        platform.create(50, 450, 1.5, 0.1); // Level 2 Left Tile
-        platform.create(750, 450, 0.4, 0.1); // Level 2 Right Tile
+        platform.create(50, 450, 0.4, 0.1); // Level 2 Left Tile
+        platform.create(350, 450, 2.5, 0.1); // Level 2 Right Tile
+        platform.create(0, 350, 2.1, 0.1); // Level 3 Left Tile
+        platform.create(0, 250, 0.4, 0.1); //Level 4 Left Tile
+        platform.create(250, 250, 1.7, 0.1); //Level 4 Right Tile
+        platform.create(0, 150, 2, 0.1); //Level 5 Tile
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
     };
