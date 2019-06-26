@@ -46,26 +46,26 @@ var background = function (window) {
                 circle.y = groundY*Math.random();
                 background.addChild(circle);
             }
-            var moon = draw.bitmap('img/bling_bling_sans.jpg');
+            var moon = draw.bitmap('img/moon.png');
             moon.x = 950;
             moon.y = -150;
-            moon.scaleX = 3.5;
-            moon.scaleY = 3.5;
+            moon.scaleX = 1;
+            moon.scaleY = 1;
             background.addChild(moon);
             // TODO: 5 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             var buildingHeight = 300;
             var building;
-            for(var i=0;i<5;++i) {
-                building = draw.rect(75,buildingHeight,'LightGray','Black',1);
+            for(var i=0;i<10;++i) {
+                building = draw.bitmap('img/far_far_man2.png');
                 building.x = 200*i;
-                building.y = groundY-buildingHeight;
+                building.y = groundY - 120;
                 background.addChild(building);
                 buildings.push(building);
             }
             
             // TODO 4: Part 1 - Add a tree
             tree = draw.bitmap('img/tree.png');
-            tree.x =400;
+            tree.x = 0;
             tree.y = groundY / 2.5;
             background.addChild(tree);
         }
@@ -79,16 +79,19 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x - 215
+            tree.x = tree.x - 5;
             if(tree.x < -200) {
                 tree.x = canvasWidth;
             }
             // TODO 5: Part 2 - Parallax
             for (var i = 0; i < buildings.length; i++) {
                 buildings[i].x = buildings[i].x -1 ;
+                if(buildings[i].x < -200) {
+                    buildings[i].x = canvasWidth;
+                }
             }
             if( buildings.x > app.canvas.width) {
-                buildings.x = 0
+                buildings.x = 0;
             }
             
         }
